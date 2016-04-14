@@ -1,0 +1,21 @@
+<% if @result %>
+	$('.tasks').prepend("<%= j render @task %>");
+
+	$('#addTask').modal('hide');
+
+	$(':input','#new_task')
+	  .not(':button, :submit, :reset, :hidden')
+	  .val('')
+	  .removeAttr('checked')
+	  .removeAttr('selected');
+
+	$("#flash-section").html('<div class="alert alert-success">' + '<%= flash[:success] %>' + '</div>');
+<% else %>
+	<% if !@task.title.presence %>
+		console.log("<%= @task.title %>");
+		$("#flash-error").html('<div class="alert alert-danger">Title must be present</div>');
+	<% elsif @task.title.presence %>
+		console.log("<%= @task.title %>");
+		$("#flash-error").html('<div class="alert alert-danger">Title cannot be longer than 140 characters</div>');
+	<% end %>
+<% end %>

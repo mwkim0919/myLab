@@ -1,0 +1,37 @@
+<%= form_for(@task, remote: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+  	<div class="form-group">
+	    <%= f.label :title %>
+	    <%= f.text_field :title, placeholder: "Write the title of your task", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+	    <%= f.label :description %>
+	    <%= f.text_area :description, placeholder: "Write the description of the task", class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+	    <div class="col-md-6">
+		    <%= f.label :start %>
+		    <div class="input-group date" id="startDateTime">
+			    <%= f.datetime_field :start, placeholder: "YYYY-MM-DD hh-mm", class: "form-control" %>
+			    <span class="input-group-addon">
+			        <span class="glyphicon glyphicon-calendar"></span>
+			    </span>
+		    </div>
+	    </div>
+
+	    <div class="col-md-6">
+		    <%= f.label :finish %>
+		    <div class="input-group date" id="endDateTime">
+			    <%= f.datetime_field :finish, placeholder: "YYYY-MM-DD hh-mm", class: "form-control" %>
+			    <span class="input-group-addon">
+			        <span class="glyphicon glyphicon-calendar"></span>
+			    </span>
+		    </div>
+	    </div>
+	</div>
+  </div>
+  <%= f.submit "Post", class: "btn btn-success", id: "form-button" %>
+<% end %>

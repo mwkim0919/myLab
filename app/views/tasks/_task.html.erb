@@ -1,0 +1,32 @@
+<li class="list-group-item button" data-toggle="modal" data-target="#task-<%= task.id %>">
+  <span class="task-title">
+    <%= task.title %>
+  </span>
+  <span class="task-buttons pull-right">
+    <% if current_user?(task.user) %>
+  		<%= link_to '<i class="glyphicon glyphicon-pencil"></i>'.html_safe, task, method: :get, data: { confirm: "You sure?" }, class: "btn btn-info btn-sm" %> 
+  		<%= link_to '<i class="glyphicon glyphicon-remove"></i>'.html_safe, task, method: :delete, data: { confirm: "You sure?" }, class: "btn btn-danger btn-sm" %>
+    <% end %>
+  </span>
+  <span class="timestamp">Posted <%= time_ago_in_words(task.created_at) %> ago.</span>
+</li>
+
+<div class="modal fade" id="task-<%= task.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><%= task.title %></h4>
+      </div>
+      <div class="modal-body">
+      	<%= task.description %><br>
+      	<%= task.start.strftime('%Y-%m-%d %H:%M') %><br>
+      	<%= task.finish.strftime('%Y-%m-%d %H:%M') %><br>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
+      </div> -->
+    </div>
+  </div>
+</div>
