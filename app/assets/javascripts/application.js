@@ -20,15 +20,15 @@
 
 $(function () {
     $('#startDateTime').datetimepicker({
-    	format: 'YYYY-MM-DD HH:mm',
+    	format: 'YYYY-MM-DD h:mm a',
     	// inline: true,
-        sideBySide: true
+        // sideBySide: true
     });
     $('#endDateTime').datetimepicker({
         useCurrent: false, //Important! See issue #1075
-        format: 'YYYY-MM-DD HH:mm',
+        format: 'YYYY-MM-DD h:mm a',
     	// inline: true,
-        sideBySide: true
+        // sideBySide: true
     });
     $("#startDateTime").on("dp.change", function (e) {
         $('#endDateTime').data("DateTimePicker").minDate(e.date);

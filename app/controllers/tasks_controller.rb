@@ -11,7 +11,7 @@ class TasksController < ApplicationController
 			else
 				@task_items = []
 				format.html { render :action => "new" }
-				format.js { task = @task.title }
+				format.js
 			end
 		end
 	end
@@ -23,12 +23,33 @@ class TasksController < ApplicationController
 	end
 
 	def edit
+		@task = current_user.tasks.find(params[:id])
+		# respond_to do |format|
+			# format.html
+			# format.js
+		# end
+	end
+
+	def update
+		@task = current_user.tasks.find(params[:id])
+		respond_to do |format|
+		    if @result = @task.update_attributes(task_params)
+		    	format.js { flash.now[:success] = "Task updated" }
+		    	format.html { redirect_to root_url }
+				# flash[:success] = "Task updated"
+				# redirect_to root_url
+		    else
+		    	format.html { render 'edit' }
+		    	format.js
+				# render 'edit'
+			end
+		end
 	end
 
 	private
 
 	    def task_params
-	      params.require(:task).permit(:title)
+	      params.require(:task).permit(:title, :description, :start, :finish)
 	    end
 
 	    def correct_user

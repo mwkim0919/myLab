@@ -1,7 +1,7 @@
 <% if @result %>
-	$('.tasks').prepend("<%= j render @task %>");
+	$('.task-title-<%= @task.id %>').html("<%= @task.title %>");
 
-	$('#addTask').modal('hide');
+	$('#editTask').modal('hide');
 
 	$(':input','#new_task')
 	  .not(':button, :submit, :reset, :hidden')

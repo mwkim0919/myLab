@@ -9,7 +9,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">
-          Todo List (<%= current_user.tasks.count %>)
+          Todo List <span class="badge" id="task-count"><%= current_user.tasks.count %></span>
           <button type="button" id="addButton" class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#addTask">
             <i class="glyphicon glyphicon-plus"></i> Add
           </button>
@@ -36,10 +36,6 @@
           <%= render 'tasks/task_form' %>
         </div>
       </div>
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
-      </div> -->
     </div>
   </div>
 </div>
