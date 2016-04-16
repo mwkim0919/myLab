@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413023657) do
+ActiveRecord::Schema.define(version: 20160416111425) do
 
   create_table "tasks", force: :cascade do |t|
     t.string   "title",       limit: 255
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20160413023657) do
     t.string   "password_digest", limit: 255
     t.string   "remember_digest", limit: 255
     t.boolean  "admin",                       default: false
+    t.string   "picture",         limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

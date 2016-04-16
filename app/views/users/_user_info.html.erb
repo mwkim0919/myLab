@@ -1,2 +1,9 @@
-<h1><%= current_user.name %></h1>
-<span><%= link_to "view my profile", edit_user_path(current_user) %></span>
+<div class="center">
+	<% if current_user.picture? %>
+		<%= image_tag current_user.picture.url, class: "img-circle" %>
+	<% else %>
+		<%= image_tag("logo.png", class: "img-circle") %>
+	<% end %>
+	<h1><%= current_user.name %></h1>
+	<span><%= link_to "update my profile", edit_user_path(current_user) %></span>
+</div>

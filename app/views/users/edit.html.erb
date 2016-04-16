@@ -1,24 +1,52 @@
 <% provide(:title, "Edit user") %>
-<h1>Update your profile</h1>
+<h2>Update your profile</h2>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user) do |f| %>
+    <div class="center">
+      <% if current_user.picture? %>
+        <%= image_tag current_user.picture.url, class: "img-circle" %>
+      <% else %>
+        <%= image_tag("logo.png", class: "img-circle") %>
+      <% end %>
+    </div>
+    <%= form_for(@user, html: { multipart: true }) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
+      <div class="form-group">
+        <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
 
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control' %>
+      </div>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <div class="form-group">
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
 
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+  $('#user_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 2) {
+      alert('Maximum file size is 2MB. Please choose a smaller file.');
+    }
+  });
+</script>

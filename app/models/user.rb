@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  mount_uploader :picture, PictureUploader
+  validate  :picture_size
 
   # Returns the hash digest of the given string.
   def User.digest(string)
@@ -44,4 +46,13 @@ class User < ActiveRecord::Base
   def feed
     Task.where("user_id = ?", id)
   end
+
+  private
+
+    # Validates the size of an uploaded picture.
+    def picture_size
+      if picture.size > 2.megabytes
+        errors.add(:picture, "should be less than 2MB")
+      end
+    end
 end
