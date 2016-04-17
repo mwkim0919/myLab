@@ -2,6 +2,25 @@
   <span class="task-title task-title-<%= task.id %>">
     <%= task.title %>
   </span>
+  <% if task.finish.present? %>
+    <% if task.finish < Time.now %>
+      <span class="label label-success" id="deadline-<%= task.id %>">
+        Done
+      </span>
+    <% elsif task.finish <= (Time.now + 1.day) && task.finish > Time.now %>
+      <span class="label label-danger" id="deadline-<%= task.id %>">
+        <%= distance_of_time_in_words(Time.now, task.finish) %> left
+      </span>
+    <% elsif task.finish <= (Time.now + 7.day) && task.finish > (Time.now + 1.day) %>
+      <span class="label label-warning" id="deadline-<%= task.id %>">
+        <%= distance_of_time_in_words(Time.now, task.finish) %> left
+      </span>
+    <% elsif task.finish > (Time.now + 7.day) %>
+      <span class="label label-primary" id="deadline-<%= task.id %>">
+        <%= distance_of_time_in_words(Time.now, task.finish) %> left
+      </span>
+    <% end %>
+  <% end %>
   <span class="task-buttons pull-right">
     <% if current_user?(task.user) %>
       <%= link_to "<i class='glyphicon glyphicon-pencil'></i>".html_safe, edit_task_path(task.id), data: {toggle: "modal", target: "#editTask"}, class: "btn btn-info btn-sm", :remote => true %>

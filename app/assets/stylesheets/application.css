@@ -16,6 +16,10 @@
  *= require bootstrap-datetimepicker
  */
 
+.label {
+    margin-left: 5px;
+}
+
 .img-circle {
     margin-bottom: 15px;
     /*display: inline-block;*/
