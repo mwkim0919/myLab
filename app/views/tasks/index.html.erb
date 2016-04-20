@@ -11,10 +11,17 @@
       <%= render 'static_pages/search' %>
     </div>
     <div class="row">
+      <section id="result-msg">
+        <% if params[:title] %>
+        <div class="alert alert-info alert-block">
+          *Showing tasks containing "<strong><%= params[:title] %></strong>"
+        </div>
+        <% end %>
+      </section>
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">
-            Todo List <span class="badge" id="task-count"><%= current_user.tasks.count %></span>
+            Todo List <span class="badge badge-default" id="task-count">Total: <%= current_user.tasks.count %></span>
             <button type="button" id="addButton" class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#addTask">
               <i class="glyphicon glyphicon-plus"></i> Add
             </button>

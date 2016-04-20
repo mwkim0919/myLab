@@ -3,22 +3,7 @@
 		<div class="form-group">
 			<%= text_field_tag :title, params[:title], placeholder: "Search Tasks", class: "form-control" %>
 		</div>
-		<div class="form-group">
-			<div class="input-group date" id="searchStart">
-			    <%= text_field_tag :start, params[:start], placeholder: "Start Date", class: "form-control" %>
-			    <span class="input-group-addon">
-			        <span class="glyphicon glyphicon-calendar"></span>
-			    </span>
-		    </div>
-		</div>
-		<div class="form-group">
-			<div class="input-group date" id="searchEnd">
-				<%= text_field_tag :finish, params[:finish], placeholder: "End Date", class: "form-control" %>
-			    <span class="input-group-addon">
-			        <span class="glyphicon glyphicon-calendar"></span>
-			    </span>
-		    </div>
-		</div>
+		
 		<div class="form-group">
 			<%= button_tag(type: 'submit', class: "btn btn-default") do %>
 				<span class="glyphicon glyphicon-search"></span> 
@@ -26,21 +11,3 @@
 		</div>
 	</div>
 <% end %>
-
-<script>
-$('#searchStart').datetimepicker({
-        format: 'YYYY-MM-DD',
-        toolbarPlacement: 'top',
-    });
-    $('#searchEnd').datetimepicker({
-        useCurrent: false, //Important! See issue #1075
-        format: 'YYYY-MM-DD',
-        toolbarPlacement: 'top',
-    });
-    $("#searchStart").on("dp.change", function (e) {
-        $('#searchEnd').data("DateTimePicker").minDate(e.date);
-    });
-    $("#searchEnd").on("dp.change", function (e) {
-        $('#searchStart').data("DateTimePicker").maxDate(e.date);
-    });
-</script>
