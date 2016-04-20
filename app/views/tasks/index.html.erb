@@ -1,49 +1,49 @@
 <% if logged_in? %>
 <div class="container">
-<div class="row" id="loggedin_home">
-  <aside class="col-md-2">
-    <section class="user_info">
-      <%= render 'users/user_info' %>
-    </section>
-  </aside>
-  <div class="col-md-10">
-  <div class="row" id="search-section">
-    <%= render 'static_pages/search' %>
-  </div>
-  <div class="row">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          Todo List <span class="badge" id="task-count"><%= current_user.tasks.count %></span>
-          <button type="button" id="addButton" class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#addTask">
-            <i class="glyphicon glyphicon-plus"></i> Add
-          </button>
-        </h3>
-      </div>
-      <div class="panel-body">
-        <%= render 'static_pages/task' %>
-      </div>
+  <div class="row" id="loggedin_home">
+    <aside class="col-md-2">
+      <section class="user-info">
+        <%= render 'users/user_info' %>
+      </section>
+    </aside>
+    <div class="col-md-10">
+    <div class="row" id="search-section">
+      <%= render 'static_pages/search' %>
     </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="addTask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Add a Task</h4>
-      </div>
-      <div class="modal-body">
-        <section id="flash-error"></section>
-        <div class="list-group">
-          <%= render 'tasks/task_form' %>
+    <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            Todo List <span class="badge" id="task-count"><%= current_user.tasks.count %></span>
+            <button type="button" id="addButton" class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#addTask">
+              <i class="glyphicon glyphicon-plus"></i> Add
+            </button>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <%= render 'static_pages/task' %>
         </div>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="addTask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Add a Task</h4>
+        </div>
+        <div class="modal-body">
+          <section id="flash-error"></section>
+          <div class="list-group">
+            <%= render 'tasks/task_form' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <% else %>
 <div class="intro-header">

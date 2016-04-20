@@ -4,10 +4,12 @@ class Task < ActiveRecord::Base
    validates :user_id, presence: true
    validates :title, presence: true, length: { maximum: 140 }
 
-   def self.search(search)
-		where("title LIKE ?", "%#{search}%") ||
-		where("description LIKE ?", "%#{search}%") ||
-		where("start > ?", "%#{Date.parse(search[:start])}%") ||
-		where("finish > ?", "%#{Date.parse(search[:finish])}%")
+   def self.search(title, start, finish)
+		# where("title LIKE ?", "%#{title}%")
+      # where("description LIKE ?", "%#{title}%")
+		# where("start = ?", start)
+		# where("finish = ?", finish)
+      where("title LIKE ? OR description LIKE ? OR start = ? OR finish = ?", "%#{title}%", "%#{title}%", start, finish)
    end
+
 end
