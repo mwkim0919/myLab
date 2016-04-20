@@ -1,4 +1,5 @@
 <section id="flash-error"></section>
+<div class="list-group">
 <%= form_for(@task, remote: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
@@ -36,3 +37,4 @@
   </div>
   <%= f.submit "Save Changes", class: "btn btn-info", id: "form-button" %>
 <% end %>
+</div>

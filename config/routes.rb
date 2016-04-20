@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root                'static_pages#home'
+  root                'tasks#index'
   get    'help'    => 'static_pages#help'
   get    'signup'  => 'users#new'
   get    'login'   => 'sessions#new'

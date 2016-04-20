@@ -3,12 +3,14 @@ $("#edit-body").html('<%= j render "tasks/edit" %>');
 $(function () {
     $('#startDateTime').datetimepicker({
     	format: 'YYYY-MM-DD h:mm a',
+        toolbarPlacement: 'top',
     	// inline: true,
         // sideBySide: true
     });
     $('#endDateTime').datetimepicker({
         useCurrent: false, //Important! See issue #1075
         format: 'YYYY-MM-DD h:mm a',
+        toolbarPlacement: 'top',
     	// inline: true,
         // sideBySide: true
     });

@@ -2,6 +2,18 @@ class TasksController < ApplicationController
 	before_action :logged_in_user, only: [:create, :destroy, :edit]
 	before_action :correct_user,   only: [:destroy, :edit]
 
+	def index
+		if logged_in?
+		  	@task = current_user.tasks.build if logged_in?
+		  	@task_items = current_user.feed.paginate(page: params[:page], :per_page => 10)
+		  	if params[:search]
+				@task_items = current_user.tasks.search(params[:search]).order("created_at DESC").paginate(page: params[:page], :per_page => 10)
+			else
+				@task_items = current_user.tasks.all.order('created_at DESC').paginate(page: params[:page], :per_page => 10)
+			end
+		end
+	end
+
 	def create
 		@task = current_user.tasks.build(task_params)
 		respond_to do |format|
@@ -20,6 +32,10 @@ class TasksController < ApplicationController
 		@task.destroy
 	    flash[:success] = "Task deleted"
 	    redirect_to request.referrer || root_url
+	end
+
+	def search
+		
 	end
 
 	def edit
