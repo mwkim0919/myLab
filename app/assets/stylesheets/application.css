@@ -15,12 +15,7 @@
  *= require bootstrap
  *= require bootstrap-datetimepicker
  */
-/*.bootstrap-datetimepicker-widget td.day {
-    width: 400px;
-    line-height: 10px;
-    font-size: 10px;
-}*/
-
+ 
 .user-info {
     margin-bottom: 10px;
 }

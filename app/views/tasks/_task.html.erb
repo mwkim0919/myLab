@@ -3,21 +3,21 @@
     <%= task.title %>
   </span>
   <% if task.finish.present? %>
-    <% if task.finish < Time.now %>
+    <% if task.finish < Date.current.in_time_zone %>
       <span class="label label-success" id="deadline-<%= task.id %>">
         Done
       </span>
-    <% elsif task.finish <= (Time.now + 1.day) && task.finish > Time.now %>
+    <% elsif task.finish <= (Date.current.in_time_zone + 1.day) && task.finish > Date.current.in_time_zone %>
       <span class="label label-danger" id="deadline-<%= task.id %>">
-        <%= distance_of_time_in_words(Time.now, task.finish) %> left
+        <%= distance_of_time_in_words(Date.current.in_time_zone, task.finish) %> left
       </span>
-    <% elsif task.finish <= (Time.now + 7.day) && task.finish > (Time.now + 1.day) %>
+    <% elsif task.finish <= (Date.current.in_time_zone + 7.day) && task.finish > (Date.current.in_time_zone + 1.day) %>
       <span class="label label-warning" id="deadline-<%= task.id %>">
-        <%= distance_of_time_in_words(Time.now, task.finish) %> left
+        <%= distance_of_time_in_words(Date.current.in_time_zone, task.finish) %> left
       </span>
-    <% elsif task.finish > (Time.now + 7.day) %>
+    <% elsif task.finish > (Date.current.in_time_zone + 7.day) %>
       <span class="label label-primary" id="deadline-<%= task.id %>">
-        <%= distance_of_time_in_words(Time.now, task.finish) %> left
+        <%= distance_of_time_in_words(Date.current.in_time_zone, task.finish) %> left
       </span>
     <% end %>
   <% end %>

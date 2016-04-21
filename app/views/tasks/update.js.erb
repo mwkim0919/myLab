@@ -2,18 +2,18 @@
 	$('.task-title-<%= @task.id %>').html("<%= @task.title %>");
 
 	<% if @task.finish.presence %>
-	    <% if @task.finish < Time.now %>
+	    <% if @task.finish < Date.current.in_time_zone %>
 	    	$('#deadline-<%= @task.id %>').removeClass().addClass("label label-success");
 			$('#deadline-<%= @task.id %>').html('Done');	      
-	    <% elsif @task.finish <= (Time.now + 1.day) && @task.finish > Time.now %>
+	    <% elsif @task.finish <= (Date.current.in_time_zone + 1.day) && @task.finish > Date.current.in_time_zone %>
 	    	$('#deadline-<%= @task.id %>').removeClass().addClass("label label-danger");
-			$('#deadline-<%= @task.id %>').html('<%= distance_of_time_in_words(Time.now, @task.finish) %> left');
-	    <% elsif @task.finish <= (Time.now + 7.day) && @task.finish > (Time.now + 1.day) %>
+			$('#deadline-<%= @task.id %>').html('<%= distance_of_time_in_words(Date.current.in_time_zone, @task.finish) %> left');
+	    <% elsif @task.finish <= (Date.current.in_time_zone + 7.day) && @task.finish > (Date.current.in_time_zone + 1.day) %>
 	    	$('#deadline-<%= @task.id %>').removeClass().addClass("label label-warning");
-	    	$('#deadline-<%= @task.id %>').html('<%= distance_of_time_in_words(Time.now, @task.finish) %> left');
-	    <% elsif @task.finish > (Time.now + 7.day) %>
+	    	$('#deadline-<%= @task.id %>').html('<%= distance_of_time_in_words(Date.current.in_time_zone, @task.finish) %> left');
+	    <% elsif @task.finish > (Date.current.in_time_zone + 7.day) %>
 	    	$('#deadline-<%= @task.id %>').removeClass().addClass("label label-primary");
-	        $('#deadline-<%= @task.id %>').html('<%= distance_of_time_in_words(Time.now, @task.finish) %> left');
+	        $('#deadline-<%= @task.id %>').html('<%= distance_of_time_in_words(Date.current.in_time_zone, @task.finish) %> left');
 	    <% end %>
 	<% else %>
 		$('#deadline-<%= @task.id %>').empty();

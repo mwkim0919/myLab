@@ -9,6 +9,8 @@ class TasksController < ApplicationController
 		  	if params[:title]
 				@task_items = current_user.tasks.search(params[:title])
 				@task_items = @task_items.order("created_at DESC").paginate(page: params[:page], :per_page => 10)
+			else
+				@task_items = current_user.feed.paginate(page: params[:page], :per_page => 10)
 			end
 		end
 	end
@@ -31,10 +33,6 @@ class TasksController < ApplicationController
 		@task.destroy
 	    flash[:success] = "Task deleted"
 	    redirect_to request.referrer || root_url
-	end
-
-	def search
-		
 	end
 
 	def edit
