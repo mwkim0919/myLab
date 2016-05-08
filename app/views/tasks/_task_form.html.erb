@@ -35,3 +35,27 @@
   </div>
   <%= f.submit "Post", class: "btn btn-success", id: "form-button" %>
 <% end %>
+
+<script>
+$(function () {
+    $('#startDateTime').datetimepicker({
+    	format: 'YYYY-MM-DD h:mm a',
+        toolbarPlacement: 'top',
+    	// inline: true,
+        // sideBySide: true
+    });
+    $('#endDateTime').datetimepicker({
+        useCurrent: false, //Important! See issue #1075
+        format: 'YYYY-MM-DD h:mm a',
+        toolbarPlacement: 'top',
+    	// inline: true,
+        // sideBySide: true
+    });
+    $("#startDateTime").on("dp.change", function (e) {
+        $('#endDateTime').data("DateTimePicker").minDate(e.date);
+    });
+    $("#endDateTime").on("dp.change", function (e) {
+        $('#startDateTime').data("DateTimePicker").maxDate(e.date);
+    });
+});
+</script>
