@@ -81,4 +81,6 @@ Rails.application.configure do
   # and use secure cookies.
   config.force_ssl = true
   config.secret_key_base = ENV["SECRET_KEY_BASE"]
+  config.serve_static_assets = true
+  config.assets.compile = true
 end
