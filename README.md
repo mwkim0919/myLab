@@ -1,5 +1,3 @@
-== README
-
 This is my first Ruby on Rails Web App in which users can manage their own todo list.
 
 * This is the front page
